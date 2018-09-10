@@ -41,14 +41,19 @@ export default {
   errorCaptured() {
     console.log('Timer errorCaptured');
   },
-
-
+  methods: {
+    onClicker: (event) => {
+      console.log(event);
+    },
+  },
   render() {
     return (
       <div>
         <h1>0:00:{this.sec}</h1>
+        <input type="time"></input>
         <h2>Hello! {this.username}</h2>
         <UserInfo username={this.username} />
+        <button onClick={this.onClicker}>START</button>
       </div>
     );
   },
