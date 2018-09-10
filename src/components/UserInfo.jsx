@@ -1,13 +1,19 @@
 export default {
-  data() {
-    return {
-      isRed: true,
-    };
+  // data() {
+  //   return {
+  //     username: '',
+  //   };
+  // },
+  props: {
+    username: {
+      type: String,
+      required: true,
+    },
   },
-  render(h) {
+  render() {
     return (
-      <div class={{ 'is-red': this.isRed }}>
-        <p>Example Text</p>
+      <div>
+        <p>User Name: {this.username}</p>
       </div>
     );
   },

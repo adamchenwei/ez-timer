@@ -4,15 +4,15 @@ export default {
   data() {
     return {
       sec: 5,
-      username: 'My Name',
+      username: 'Adam',
     };
   },
-  render(h) {
+  render() {
     return (
       <div>
         <h1>0:00:{this.sec}</h1>
-        <h2>{this.username}</h2>
-        <UserInfo />
+        <h2>Hello! {this.username}</h2>
+        <UserInfo username={this.username} />
       </div>
     );
   },
