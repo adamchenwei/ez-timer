@@ -4,6 +4,7 @@ export default {
   //     username: '',
   //   };
   // },
+  name: 'UserInfo',
   props: {
     username: {
       type: String,
