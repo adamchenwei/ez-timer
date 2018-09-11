@@ -45,8 +45,9 @@ export default {
     console.log('Timer errorCaptured');
   },
   methods: {
-    onClicker: (event) => {
+    onClicker(event) {
       console.log(event);
+      this.sec = 999 + this.sec;
     },
     onContentChange: (event) => {
       console.log(event.target.textContent);
@@ -58,7 +59,8 @@ export default {
       {/* {this.hour} */}
         <h1>
           <EditableSpan change={this.onContentChange}>{this.hour}</EditableSpan>
-          :<span contentEditable>{this.min}</span>:<span contentEditable>{this.sec}</span>
+          :<EditableSpan change={this.onContentChange}>{this.min}</EditableSpan>
+          :<EditableSpan change={this.onContentChange}>{this.sec}</EditableSpan>
         </h1>
         <input type="time"></input>
         <UserInfo username={this.username} />

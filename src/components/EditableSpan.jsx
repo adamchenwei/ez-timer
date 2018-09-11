@@ -12,7 +12,6 @@ export default {
     },
   },
   render() {
-    console.log(this);
     return (
       <span contentEditable onInput={this.change}>
         {this.$slots.default}
