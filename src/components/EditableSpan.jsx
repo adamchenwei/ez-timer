@@ -13,9 +13,15 @@ export default {
   },
   render() {
     return (
-      <span contentEditable onInput={this.change}>
+      <span
+        contentEditable
+        onInput={this.change}
+        style={`
+          font-size: 32px;
+        `}>
         {this.$slots.default}
       </span>
     );
   },
 };
+

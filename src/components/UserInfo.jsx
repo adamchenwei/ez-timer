@@ -5,11 +5,17 @@ export default {
       type: String,
       required: true,
     },
+    textColor: {
+      type: String,
+      required: true,
+    },
   },
   render() {
     return (
       <div>
-        <p>User Name: {this.username}</p>
+        <p style={`
+          color: ${this.textColor}
+        `}>User Name: {this.username}</p>
       </div>
     );
   },
