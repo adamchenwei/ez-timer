@@ -1,6 +1,12 @@
 import UserInfo from '@/components/UserInfo';
 import EditableSpan from '../components/EditableSpan';
 
+{/* <style scoped>
+  .Test {
+    color: red;
+  }
+</style> */}
+
 export default {
   name: 'Timer',
   data() {
