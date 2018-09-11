@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import Timer from './views/Timer.jsx';
+import Timer from './views/Timer';
+import Interview from './views/Interview';
 
 Vue.use(Router);
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/timer',
       name: 'timer',
       component: Timer,
+    },
+    {
+      path: '/interview',
+      name: 'interview',
+      component: Interview,
     },
     {
       path: '/about',
