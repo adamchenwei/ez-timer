@@ -15,7 +15,7 @@ export default {
     console.log(this);
     return (
       <span contentEditable onInput={this.change}>
-        {this.$slots.default[0]}
+        {this.$slots.default}
       </span>
     );
   },
