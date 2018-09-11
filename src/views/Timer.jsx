@@ -1,9 +1,12 @@
 import UserInfo from '@/components/UserInfo';
+import EditableSpan from '../components/EditableSpan';
 
 export default {
   name: 'Timer',
   data() {
     return {
+      hour: 1,
+      min: 2,
       sec: 5,
       username: 'Adam',
     };
@@ -45,13 +48,19 @@ export default {
     onClicker: (event) => {
       console.log(event);
     },
+    onContentChange: (event) => {
+      console.log(event.target.textContent);
+    },
   },
   render() {
     return (
       <div>
-        <h1>0:00:{this.sec}</h1>
+      {/* {this.hour} */}
+        <h1>
+          <EditableSpan change={this.onContentChange}>{this.hour}</EditableSpan>
+          :<span contentEditable>{this.min}</span>:<span contentEditable>{this.sec}</span>
+        </h1>
         <input type="time"></input>
-        <h2>Hello! {this.username}</h2>
         <UserInfo username={this.username} />
         <button onClick={this.onClicker}>START</button>
       </div>

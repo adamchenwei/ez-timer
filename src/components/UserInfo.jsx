@@ -1,9 +1,4 @@
 export default {
-  // data() {
-  //   return {
-  //     username: '',
-  //   };
-  // },
   name: 'UserInfo',
   props: {
     username: {
