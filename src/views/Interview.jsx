@@ -1,9 +1,10 @@
-import UserInfo from '@/components/UserInfo';
+// import UserInfo from '@/components/UserInfo';
 import EditableSpan from '../components/EditableSpan';
 import InterviewAppContainer from '../layout/interview/InterviewAppContainer';
 import CounterRow from '../layout/interview/CounterRow';
 import ContentRow from '../layout/interview/ContentRow';
 import ScaleSelectionBar from '../components/molecule/ScaleSelectionBar';
+import Counter from '../service/Counter';
 
 
 export default {
@@ -20,9 +21,10 @@ export default {
   // beforeMount() {
   //   console.log('Timer beforeMount');
   // },
-  // mounted() {
-  //   console.log('Timer mounted');
-  // },
+  mounted() {
+    console.log('Timer mounted');
+    this.counter = new Counter();
+  },
   // beforeCreate() {
   //   console.log('Timer beforeCreate');
   // },
@@ -77,6 +79,17 @@ export default {
             right="Harder"
             name="Difficulty"
           />
+        </ContentRow>
+        <ContentRow>
+          <ScaleSelectionBar
+            left="Failed"
+            right="Passed"
+            name="Grade"
+          />
+        </ContentRow>
+        <ContentRow flow="row">
+          <section style="flex:1;">One</section>
+          <section style="flex:1;">Two</section>
         </ContentRow>
       </InterviewAppContainer>
     );

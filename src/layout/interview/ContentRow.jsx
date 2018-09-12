@@ -2,6 +2,12 @@ import theme from '../config/theme';
 
 export default {
   name: 'ContentRow',
+  props: {
+    flow: {
+      default: 'column',
+      type: String,
+    },
+  },
   render() {
     return (
       <section
@@ -12,8 +18,9 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
-          flex-flow: column;
+          flex-flow: ${this.flow};
           padding: 16px;
+          margin-bottom: 16px;
         `}>
         {this.$slots.default}
       </section>
