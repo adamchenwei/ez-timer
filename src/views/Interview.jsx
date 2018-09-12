@@ -1,10 +1,9 @@
-// import UserInfo from '@/components/UserInfo';
-import EditableSpan from '../components/EditableSpan';
 import InterviewAppContainer from '../layout/interview/InterviewAppContainer';
 import CounterRow from '../layout/interview/CounterRow';
 import ContentRow from '../layout/interview/ContentRow';
 import ScaleSelectionBar from '../components/molecule/ScaleSelectionBar';
 import Counter from '../service/Counter';
+import CounterPanel from '../components/organism/CounterPanel';
 
 
 export default {
@@ -21,10 +20,9 @@ export default {
   // beforeMount() {
   //   console.log('Timer beforeMount');
   // },
-  mounted() {
-    console.log('Timer mounted');
-    this.counter = new Counter();
-  },
+  // mounted() {
+  //   console.log('Timer mounted');
+  // },
   // beforeCreate() {
   //   console.log('Timer beforeCreate');
   // },
@@ -53,25 +51,35 @@ export default {
   //   console.log('Timer errorCaptured');
   // },
   methods: {
-    onStartClick(/* event */) {
-      // console.log(event);
-      this.sec = 999 + this.sec;
-      this.newColor = 'red';
+    startClick(event) {
+      console.log(event);
+      // this.sec = 999 + this.sec;
+      // this.newColor = 'red';
+      if (this.counter) {
+        this.counter.reset();
+      }
+      this.counter = new Counter(null, this.tickCallback);
+      this.counter.setStartDateTime();
+      this.counter.startCountDown();
     },
     onContentChange: (/* event */) => {
       // console.log(event.target.textContent);
+    },
+    setValue(name, value) {
+      this[name] = value;
+    },
+    tickCallback(data) {
+      console.log(data);
+      // this.setValue(name, value);
     },
   },
   render() {
     return (
       <InterviewAppContainer>
         <CounterRow>
-          <h1>
-            <EditableSpan change={this.onContentChange}>{this.hour}</EditableSpan>
-            :<EditableSpan change={this.onContentChange}>{this.min}</EditableSpan>
-            :<EditableSpan change={this.onContentChange}>{this.sec}</EditableSpan>
-          </h1>
-          <button onClick={this.onStartClick}>Start</button>
+          <CounterPanel
+            startClick={this.startClick}
+          />
         </CounterRow>
         <ContentRow>
           <ScaleSelectionBar
