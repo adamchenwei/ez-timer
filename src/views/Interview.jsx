@@ -112,6 +112,8 @@ export default {
     },
     ensureItsNumber(value) {
       const val = parseInt(value, 10);
+      console.log(val);
+      console.log(isNan(val));
       return isNan(val) ? 0 : val;
     },
   },
@@ -128,7 +130,7 @@ export default {
             sec={this.ensureItsNumber(this.seconds)}
           />
         </CounterRow>
-        <ContentRow>
+        {/* <ContentRow>
           <ScaleSelectionBar
             left="Easier"
             right="Harder"
@@ -145,7 +147,7 @@ export default {
             onClickLeft={() => {}}
             onClickRight={() => {}}
           />
-        </ContentRow>
+        </ContentRow> */}
         <ContentRow flow="row">
           <section style="flex:1;">One</section>
           <section style="flex:1;">Two</section>

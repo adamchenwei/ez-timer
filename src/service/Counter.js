@@ -28,7 +28,7 @@ export default class Counter {
   get() {
     return this.timer;
   }
-  
+
   reset() {
     if (this.timer.instance) {
       clearInterval(this.timer.instance);
