@@ -6,6 +6,7 @@ import ScaleSelectionBar from '@/components/molecule/ScaleSelectionBar';
 import Counter from '@/service/Counter';
 import CounterPanel from '@/components/organism/CounterPanel';
 import getTimeFromSec from '@/service/getTimeFromSec';
+import InterviewBank from '../service/InterviewBank';
 
 
 export default {
@@ -17,11 +18,13 @@ export default {
       seconds: 0,
       username: 'Adam',
       newColor: 'orange',
+      bank: [],
     };
   },
-  // beforeMount() {
-  //   console.log('Timer beforeMount');
-  // },
+  beforeMount() {
+    console.log('Timer beforeMount');
+    this.bank = InterviewBank.FrontEndEngineer;
+  },
   // mounted() {
   //   console.log('Timer mounted');
   // },
@@ -130,6 +133,8 @@ export default {
             left="Easier"
             right="Harder"
             name="Difficulty"
+            onClickLeft={() => {}}
+            onClickRight={() => {}}
           />
         </ContentRow>
         <ContentRow>
@@ -137,6 +142,8 @@ export default {
             left="Failed"
             right="Passed"
             name="Grade"
+            onClickLeft={() => {}}
+            onClickRight={() => {}}
           />
         </ContentRow>
         <ContentRow flow="row">

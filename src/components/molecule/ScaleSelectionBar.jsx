@@ -1,6 +1,14 @@
 export default {
   name: 'ScaleSelectionBar',
   props: {
+    onClickLeft: {
+      type: Function,
+      required: true,
+    },
+    onClickRight: {
+      type: Function,
+      required: true,
+    },
     left: {
       type: String,
       required: true,
@@ -22,9 +30,9 @@ export default {
         width: 100%;
         padding: 16px;
       `}>
-        <button>{this.left}</button>
+        <button onClick={this.onClickLeft}>{this.left}</button>
         <span>{this.name}</span>
-        <button>{this.right}</button>
+        <button onClick={this.onClickRight}>{this.right}</button>
       </div>
     );
   },
