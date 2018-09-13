@@ -27,7 +27,11 @@ export default {
   },
   render() {
     return (
-      <section>
+      <section style={`
+        border-color: ${(!this.hour && !this.min && !this.sec ? 'orange' : 'transparent')};
+        border-size: 1px;
+        border-style: solid;
+      `}>
         <p>
           <EditableSpan name="hours" change={this.whenContentChange}>{this.hour}</EditableSpan>  hr
           :<EditableSpan name="minutes" change={this.whenContentChange}>{this.min}</EditableSpan> min

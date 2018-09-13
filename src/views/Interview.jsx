@@ -1,3 +1,4 @@
+import isNan from 'lodash/isNaN';
 import InterviewAppContainer from '@/layout/interview/InterviewAppContainer';
 import CounterRow from '@/layout/interview/CounterRow';
 import ContentRow from '@/layout/interview/ContentRow';
@@ -58,6 +59,11 @@ export default {
       // this.newColor = 'red';
       if (this.counter) {
         this.counter.reset();
+        // const newTime = this.timer.get().durationInSec;
+        // this.counter = {
+        //   ...this.counter,
+        //   ...newTime,
+        // };
       }
       this.counter = new Counter(null, this.tickCallback);
       this.counter.setEndTime({
@@ -88,7 +94,8 @@ export default {
       if (e.synthetic && e.synthetic.name) {
         targetName = e.synthetic.name;
       }
-      this[targetName] = textContent;
+      this[targetName] = this.ensureItsNumber(textContent);
+      console.log(this[targetName]);
     },
 
     tickCallback(data) {
@@ -100,7 +107,12 @@ export default {
       console.log(`${this.hours} ${this.minutes} ${this.seconds}`);
       // this.setVal(name, value);
     },
+    ensureItsNumber(value) {
+      const val = parseInt(value, 10);
+      return isNan(val) ? 0 : val;
+    },
   },
+
   render() {
     return (
       <InterviewAppContainer>
@@ -108,9 +120,9 @@ export default {
           <CounterPanel
             startClick={this.startClick}
             whenContentChange={this.whenChange}
-            hour={parseInt(this.hours, 10)}
-            min={parseInt(this.minutes, 10)}
-            sec={parseInt(this.seconds, 10)}
+            hour={this.ensureItsNumber(this.hours)}
+            min={this.ensureItsNumber(this.minutes)}
+            sec={this.ensureItsNumber(this.seconds)}
           />
         </CounterRow>
         <ContentRow>

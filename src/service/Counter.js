@@ -25,9 +25,14 @@ export default class Counter {
     this.timer.durationInSec = totalTime;
   }
 
+  get() {
+    return this.timer;
+  }
+  
   reset() {
     if (this.timer.instance) {
       clearInterval(this.timer.instance);
+      this.timer.durationInSec = 0;
     } else {
       console.log('nothing to reset');
     }
@@ -43,7 +48,7 @@ export default class Counter {
 
   countDown() {
     this.timer.durationInSec -= 1;
-    if (!this.timer.durationInSec) this.reset();
+    if (!this.timer.durationInSec || this.timer.durationInSec < 0) this.reset();
   }
   // endCountDown() {
   // }
