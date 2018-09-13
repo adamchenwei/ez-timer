@@ -15,9 +15,20 @@ export default class Counter {
     this.todayDate = new Date();
   }
 
-  setStartDateTime(timestamp) {
-    this.timer.start = timestamp || this.todayDate.now();
+  // setStartDateTime(timestamp) {
+  //   this.timer.start = timestamp || Date.now();
+  // }
+
+  setEndTime(time) {
+    const {
+      hour,
+      min,
+      sec,
+    } = time;
+    const totalTime = (sec + (min * 60) + (hour * 3600)) * 1000;
+    this.timer.end = this.timer.start + totalTime;
   }
+
   reset() {
     if (this.timer.instance) {
       this.timer.instance.clearInterval(this.timer.instance);
@@ -33,7 +44,7 @@ export default class Counter {
     }, 1000);
   }
   countDown() {
-    this.timer.start -= 1;
+    this.timer.start -= 1000;
   }
   // endCountDown() {
   // }

@@ -4,15 +4,16 @@ import ContentRow from '../layout/interview/ContentRow';
 import ScaleSelectionBar from '../components/molecule/ScaleSelectionBar';
 import Counter from '../service/Counter';
 import CounterPanel from '../components/organism/CounterPanel';
+import getTimeFromSec from '../service/getTimeFromSec';
 
 
 export default {
   name: 'Interview',
   data() {
     return {
-      hour: 1,
-      min: 2,
-      sec: 5,
+      hour: 0,
+      min: 0,
+      sec: 0,
       username: 'Adam',
       newColor: 'orange',
     };
@@ -59,18 +60,31 @@ export default {
         this.counter.reset();
       }
       this.counter = new Counter(null, this.tickCallback);
-      this.counter.setStartDateTime();
+      this.counter.setEndTime({
+        sec: this.sec,
+        min: this.min,
+        hour: this.hour,
+      });
       this.counter.startCountDown();
     },
-    onContentChange: (/* event */) => {
-      // console.log(event.target.textContent);
+    onTimeChange: (event) => {
+      console.log('a');
+      console.log(event.target.textContent);
     },
-    setValue(name, value) {
-      this[name] = value;
-    },
+    // setVal(event) {
+    //   console.log(event);
+    //   const { name, textContent } = event.target;
+    //   this[name] = textContent;
+    // },
+
     tickCallback(data) {
       console.log(data);
-      // this.setValue(name, value);
+      const time = getTimeFromSec();
+      this.hour = time.hour;
+      this.min = time.minute;
+      this.sec = time.second;
+      console.log(`${this.hour} ${this.min} ${this.sec}`);
+      // this.setVal(name, value);
     },
   },
   render() {
@@ -78,7 +92,11 @@ export default {
       <InterviewAppContainer>
         <CounterRow>
           <CounterPanel
+            onContentChange={this.onTimeChange}
             startClick={this.startClick}
+            hour={this.hour}
+            min={this.min}
+            sec={this.sec}
           />
         </CounterRow>
         <ContentRow>

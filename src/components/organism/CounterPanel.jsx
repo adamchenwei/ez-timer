@@ -5,7 +5,7 @@ export default {
   props: {
     onContentChange: {
       type: Function,
-      default: () => {},
+      default: () => { console.log('onContentChange'); },
     },
     startClick: {
       type: Function,
@@ -28,9 +28,9 @@ export default {
     return (
       <section>
         <h1>
-          <EditableSpan change={this.onContentChange}>{this.hour}</EditableSpan>
-          :<EditableSpan change={this.onContentChange}>{this.min}</EditableSpan>
-          :<EditableSpan change={this.onContentChange}>{this.sec}</EditableSpan>
+          <EditableSpan name="hours" change={this.onContentChange}>{this.hour}</EditableSpan>
+          :<EditableSpan name="minutes" change={this.onContentChange}>{this.min}</EditableSpan>
+          :<EditableSpan name="seconds" change={this.onContentChange}>{this.sec}</EditableSpan>
         </h1>
         <button onClick={this.startClick}>Start</button>
       </section>
