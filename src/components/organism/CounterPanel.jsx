@@ -3,13 +3,14 @@ import EditableSpan from '../EditableSpan';
 export default {
   name: 'CounterPanel',
   props: {
-    onContentChange: {
-      type: Function,
-      default: () => { console.log('onContentChange'); },
-    },
+
     startClick: {
       type: Function,
       default: () => {},
+    },
+    whenContentChange: {
+      type: Function,
+      required: true,
     },
     hour: {
       type: Number,
@@ -27,11 +28,11 @@ export default {
   render() {
     return (
       <section>
-        <h1>
-          <EditableSpan name="hours" change={this.onContentChange}>{this.hour}</EditableSpan>
-          :<EditableSpan name="minutes" change={this.onContentChange}>{this.min}</EditableSpan>
-          :<EditableSpan name="seconds" change={this.onContentChange}>{this.sec}</EditableSpan>
-        </h1>
+        <p>
+          <EditableSpan name="hours" change={this.whenContentChange}>{this.hour}</EditableSpan>  hr
+          :<EditableSpan name="minutes" change={this.whenContentChange}>{this.min}</EditableSpan> min
+          :<EditableSpan name="seconds" change={this.whenContentChange}>{this.sec}</EditableSpan> sec
+        </p>
         <button onClick={this.startClick}>Start</button>
       </section>
     );
