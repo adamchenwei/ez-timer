@@ -22,13 +22,25 @@ export default {
     };
   },
   watch: {
-    '$route': (to, from, next) {
+    '$route' (to, from, next) {
       console.log('beforeRouteUpdate');
       if (this.counter) {
         this.counter.reset();
         next();
       }
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    this.counter.reset();
+    console.log('beforeRouteLeave');
+    return next();
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log('beforeRouteEnter');
+    return next();
+  },
+  beforeRouteUpdate() {
+    console.log('beforeRouteUpdate');
   },
   beforeMount() {
     console.log('Timer beforeMount');
