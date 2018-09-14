@@ -4,7 +4,7 @@ import CounterRow from '@/layout/interview/CounterRow';
 import ContentRow from '@/layout/interview/ContentRow';
 import ScaleSelectionBar from '@/components/molecule/ScaleSelectionBar';
 import Counter from '@/service/Counter';
-import CounterPanel from '@/components/organism/CounterPanel';
+import CounterPanel2 from '@/components/organism/CounterPanel2';
 import getTimeFromSec from '@/service/getTimeFromSec';
 import InterviewBank from '../service/InterviewBank';
 
@@ -20,6 +20,15 @@ export default {
       newColor: 'orange',
       bank: [],
     };
+  },
+  watch: {
+    '$route': (to, from, next) {
+      console.log('beforeRouteUpdate');
+      if (this.counter) {
+        this.counter.reset();
+        next();
+      }
+    }
   },
   beforeMount() {
     console.log('Timer beforeMount');
@@ -46,9 +55,12 @@ export default {
   // deactivated() {
   //   console.log('Timer deactivated');
   // },
-  // beforeDestory() {
-  //   console.log('Timer beforeDestory');
-  // },
+  beforeDestory() {
+    console.log('Timer beforeDestory');
+    if (this.counter) {
+      this.counter.reset();
+    }
+  },
   // destoryed() {
   //   console.log('Timer destoryed');
   // },
@@ -58,15 +70,8 @@ export default {
   methods: {
     startClick(event) {
       console.log(event);
-      // this.seconds = 999 + this.seconds;
-      // this.newColor = 'red';
       if (this.counter) {
         this.counter.reset();
-        // const newTime = this.timer.get().durationInSec;
-        // this.counter = {
-        //   ...this.counter,
-        //   ...newTime,
-        // };
       }
       this.counter = new Counter(null, this.tickCallback);
       this.counter.setEndTime({
@@ -92,13 +97,17 @@ export default {
       }
       console.log(e);
 
-      const { name, textContent } = e.target;
-      let targetName = name;
-      if (e.synthetic && e.synthetic.name) {
-        targetName = e.synthetic.name;
+      const { name, textContent, value } = e.target;
+      if (textContent) {
+        let targetName = name;
+        if (e.synthetic && e.synthetic.name) {
+          targetName = e.synthetic.name;
+        }
+        this[targetName] = this.ensureItsNumber(textContent);
+        console.log(this[targetName]);
+      } else if (value) {
+        this[name] = this.ensureItsNumber(value);
       }
-      this[targetName] = this.ensureItsNumber(textContent);
-      console.log(this[targetName]);
     },
 
     tickCallback(data) {
@@ -116,13 +125,16 @@ export default {
       console.log(isNan(val));
       return isNan(val) ? 0 : val;
     },
+    grade(score) {
+
+    }
   },
 
   render() {
     return (
       <InterviewAppContainer>
         <CounterRow>
-          <CounterPanel
+          <CounterPanel2
             startClick={this.startClick}
             whenContentChange={this.whenChange}
             hour={this.ensureItsNumber(this.hours)}
