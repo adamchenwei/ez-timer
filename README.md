@@ -1,5 +1,7 @@
 # ez-timer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/adamchenwei/ez-timer.svg)](https://greenkeeper.io/)
+
 ## Project setup
 ```
 yarn install
